@@ -1,0 +1,18 @@
+aid: blue-yonder
+url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/apis.yml
+apis:
+- aid: blue-yonder:blue-yonder-api
+  name: Blue Yonder (JDA) Supply Chain API
+  tags:
+  - Supply Chain
+  - Demand Planning
+  - Retail
+  - Forecasting
+  image: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
+  humanURL: https://blueyonder.com/
+  baseURL: https://api.blueyonder.example.com
+  properties:
+  - url: https://blueyonder.com/
+    type: Documentation
+  description: >-
+    Blue Yonder (formerly JDA Software) provides supply chain planning and execution platforms. APIs enable access to demand forecasting, inventory optimization, warehouse management, and transportation planning data for retail and manufacturing supply chains.
