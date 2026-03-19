@@ -32,6 +32,8 @@ apis:
   properties:
   - url: https://blueyonder.com/solutions/blue-yonder-platform
     type: Documentation
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
+    type: OpenAPI
   description: >-
     The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
 
@@ -81,6 +83,12 @@ common:
     type: GettingStarted
   - url: https://blog.blueyonder.com/
     type: Blog
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
+    type: OpenAPI
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-schema/blue-yonder-inventory-schema.json
+    type: JSONSchema
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-ld/blue-yonder-context.jsonld
+    type: JSONLDContext
 
 maintainers:
 - name: Kin Lane

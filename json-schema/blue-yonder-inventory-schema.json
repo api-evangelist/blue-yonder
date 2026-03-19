@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-schema/blue-yonder-inventory-schema.json",
+  "title": "Blue Yonder Inventory Position",
+  "description": "JSON Schema for a Blue Yonder WMS inventory position representing stock at a warehouse location.",
+  "type": "object",
+  "required": ["positionId", "itemId", "locationId", "quantityOnHand"],
+  "properties": {
+    "positionId": {
+      "type": "string",
+      "description": "Unique inventory position identifier"
+    },
+    "itemId": {
+      "type": "string",
+      "description": "Item/SKU identifier"
+    },
+    "itemDescription": {
+      "type": "string"
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Warehouse location identifier (bin, rack, slot)"
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "zone": {
+      "type": "string",
+      "description": "Warehouse zone (e.g., Receiving, Storage, Shipping)"
+    },
+    "quantityOnHand": {
+      "type": "number",
+      "minimum": 0
+    },
+    "quantityAvailable": {
+      "type": "number",
+      "minimum": 0
+    },
+    "quantityReserved": {
+      "type": "number",
+      "minimum": 0
+    },
+    "unitOfMeasure": {
+      "type": "string",
+      "description": "Unit of measure (e.g., EA, CS, LB, KG)"
+    },
+    "lotNumber": {
+      "type": "string"
+    },
+    "serialNumber": {
+      "type": "string"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Available", "Reserved", "Quarantine", "Damaged"]
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

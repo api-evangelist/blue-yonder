@@ -1,0 +1,551 @@
+openapi: 3.1.0
+info:
+  title: Blue Yonder Warehouse Management API
+  description: >-
+    The Blue Yonder Warehouse Management API provides access to warehouse operations
+    data including inventory positions, task management, labor optimization, and
+    fulfillment workflows. REST APIs support integration with automation systems,
+    robotics, and ERP platforms for distribution center operations.
+  version: 1.0.0
+  contact:
+    name: Blue Yonder Platform
+    url: https://blueyonder.com/solutions/blue-yonder-platform
+
+servers:
+  - url: https://api.blueyonder.example.com
+    description: Blue Yonder WMS API
+
+security:
+  - oauth2: []
+  - bearerAuth: []
+
+tags:
+  - name: Inventory
+    description: Inventory positions and stock management
+  - name: Receipts
+    description: Inbound receiving and putaway
+  - name: Orders
+    description: Outbound order management and picking
+  - name: Tasks
+    description: Warehouse task management
+
+paths:
+  /wms/v1/inventory:
+    get:
+      operationId: listInventory
+      summary: List inventory positions
+      description: Retrieve current inventory levels and positions across warehouse locations.
+      tags: [Inventory]
+      parameters:
+        - name: locationId
+          in: query
+          description: Filter by warehouse location
+          schema:
+            type: string
+        - name: itemId
+          in: query
+          description: Filter by item/SKU identifier
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Available, Reserved, Quarantine, Damaged]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: Inventory positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /wms/v1/inventory/{itemId}:
+    get:
+      operationId: getInventoryByItem
+      summary: Get inventory for item
+      description: Get inventory levels and all warehouse locations for a specific item/SKU.
+      tags: [Inventory]
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Item inventory details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemInventory'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /wms/v1/receipts:
+    get:
+      operationId: listReceipts
+      summary: List receipts
+      description: Retrieve inbound receipts (purchase orders and ASN receipts).
+      tags: [Receipts]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Expected, Arrived, InProgress, Completed, Cancelled]
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of receipts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiptList'
+
+    post:
+      operationId: createReceipt
+      summary: Create inbound receipt
+      description: Create a new inbound receipt for an expected delivery (ASN or PO receipt).
+      tags: [Receipts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiptRequest'
+      responses:
+        '201':
+          description: Receipt created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+
+  /wms/v1/orders:
+    get:
+      operationId: listOrders
+      summary: List outbound orders
+      description: Retrieve outbound fulfillment orders.
+      tags: [Orders]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [New, Picking, Packed, Shipped, Cancelled]
+        - name: priority
+          in: query
+          schema:
+            type: string
+            enum: [Standard, Rush, Critical]
+      responses:
+        '200':
+          description: Outbound orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+
+    post:
+      operationId: createOrder
+      summary: Create outbound order
+      description: Create a new outbound fulfillment order for warehouse picking and shipping.
+      tags: [Orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+  /wms/v1/tasks:
+    get:
+      operationId: listTasks
+      summary: List warehouse tasks
+      description: Retrieve warehouse tasks (pick, put, move, count) for assignment and tracking.
+      tags: [Tasks]
+      parameters:
+        - name: taskType
+          in: query
+          schema:
+            type: string
+            enum: [Pick, Putaway, Move, CycleCount, ReplenishmentPick]
+        - name: assignedTo
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Pending, Assigned, InProgress, Completed, Cancelled]
+      responses:
+        '200':
+          description: Warehouse tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskList'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.blueyonder.example.com/oauth/token
+          scopes:
+            wms:read: Read warehouse data
+            wms:write: Write warehouse data
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    InventoryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryPosition'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    InventoryPosition:
+      type: object
+      properties:
+        positionId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        locationId:
+          type: string
+        locationName:
+          type: string
+        zone:
+          type: string
+        quantityOnHand:
+          type: number
+        quantityAvailable:
+          type: number
+        quantityReserved:
+          type: number
+        unitOfMeasure:
+          type: string
+        lotNumber:
+          type: string
+        serialNumber:
+          type: string
+        expirationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [Available, Reserved, Quarantine, Damaged]
+        lastUpdated:
+          type: string
+          format: date-time
+
+    ItemInventory:
+      type: object
+      properties:
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        totalQuantityOnHand:
+          type: number
+        totalQuantityAvailable:
+          type: number
+        unitOfMeasure:
+          type: string
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryPosition'
+
+    Receipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+        referenceNumber:
+          type: string
+        status:
+          type: string
+          enum: [Expected, Arrived, InProgress, Completed, Cancelled]
+        expectedDate:
+          type: string
+          format: date
+        arrivedDate:
+          type: string
+          format: date-time
+        supplierId:
+          type: string
+        supplierName:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItem'
+
+    ReceiptRequest:
+      type: object
+      required: [referenceNumber, expectedDate, lineItems]
+      properties:
+        referenceNumber:
+          type: string
+        expectedDate:
+          type: string
+          format: date
+        supplierId:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItemRequest'
+
+    ReceiptLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        expectedQuantity:
+          type: number
+        receivedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+
+    ReceiptLineItemRequest:
+      type: object
+      required: [itemId, expectedQuantity]
+      properties:
+        itemId:
+          type: string
+        expectedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+
+    ReceiptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receipt'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        orderNumber:
+          type: string
+        status:
+          type: string
+          enum: [New, Picking, Packed, Shipped, Cancelled]
+        priority:
+          type: string
+          enum: [Standard, Rush, Critical]
+        requestedShipDate:
+          type: string
+          format: date
+        shipToAddress:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        createdAt:
+          type: string
+          format: date-time
+
+    OrderRequest:
+      type: object
+      required: [orderNumber, requestedShipDate, lineItems]
+      properties:
+        orderNumber:
+          type: string
+        priority:
+          type: string
+          enum: [Standard, Rush, Critical]
+          default: Standard
+        requestedShipDate:
+          type: string
+          format: date
+        shipToAddress:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            type: object
+            required: [itemId, quantity]
+            properties:
+              itemId:
+                type: string
+              quantity:
+                type: number
+              unitOfMeasure:
+                type: string
+
+    OrderLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        orderedQuantity:
+          type: number
+        pickedQuantity:
+          type: number
+        shippedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+
+    OrderList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Task:
+      type: object
+      properties:
+        taskId:
+          type: string
+        taskType:
+          type: string
+          enum: [Pick, Putaway, Move, CycleCount, ReplenishmentPick]
+        status:
+          type: string
+          enum: [Pending, Assigned, InProgress, Completed, Cancelled]
+        priority:
+          type: integer
+        assignedTo:
+          type: string
+        fromLocation:
+          type: string
+        toLocation:
+          type: string
+        itemId:
+          type: string
+        quantity:
+          type: number
+        unitOfMeasure:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+
+    TaskList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

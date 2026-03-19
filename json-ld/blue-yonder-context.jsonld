@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "by": "https://blueyonder.com/ontology/",
+    "schema": "https://schema.org/",
+    "gs1": "https://www.gs1.org/voc/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "InventoryPosition": {
+      "@id": "gs1:StoredProduct",
+      "@context": {
+        "positionId": {"@id": "by:positionId"},
+        "itemId": {"@id": "gs1:gtin"},
+        "itemDescription": {"@id": "schema:name"},
+        "locationId": {"@id": "by:locationId"},
+        "locationName": {"@id": "gs1:logisticUnitGroupingQuantity"},
+        "zone": {"@id": "by:warehouseZone"},
+        "quantityOnHand": {"@id": "gs1:quantity", "@type": "xsd:decimal"},
+        "quantityAvailable": {"@id": "by:quantityAvailable", "@type": "xsd:decimal"},
+        "quantityReserved": {"@id": "by:quantityReserved", "@type": "xsd:decimal"},
+        "unitOfMeasure": {"@id": "gs1:unitCode"},
+        "lotNumber": {"@id": "gs1:lotNumber"},
+        "serialNumber": {"@id": "gs1:serialNumber"},
+        "expirationDate": {"@id": "gs1:expiryDate", "@type": "xsd:date"},
+        "status": {"@id": "by:inventoryStatus"}
+      }
+    },
+
+    "Order": {
+      "@id": "schema:Order",
+      "@context": {
+        "orderId": {"@id": "schema:orderNumber"},
+        "orderNumber": {"@id": "schema:identifier"},
+        "status": {"@id": "schema:orderStatus"},
+        "priority": {"@id": "by:fulfillmentPriority"},
+        "requestedShipDate": {"@id": "schema:expectedArrivalUntil", "@type": "xsd:date"},
+        "shipToAddress": {"@id": "schema:deliveryAddress"},
+        "lineItems": {"@id": "schema:orderedItem", "@container": "@set"}
+      }
+    },
+
+    "Receipt": {
+      "@id": "schema:ReceiveAction",
+      "@context": {
+        "receiptId": {"@id": "by:receiptId"},
+        "referenceNumber": {"@id": "schema:identifier"},
+        "status": {"@id": "by:receiptStatus"},
+        "expectedDate": {"@id": "schema:expectedArrivalFrom", "@type": "xsd:date"},
+        "supplierId": {"@id": "schema:supplier"},
+        "lineItems": {"@id": "schema:object", "@container": "@set"}
+      }
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "name": {"@id": "schema:name"},
+        "street1": {"@id": "schema:streetAddress"},
+        "city": {"@id": "schema:addressLocality"},
+        "state": {"@id": "schema:addressRegion"},
+        "postalCode": {"@id": "schema:postalCode"},
+        "country": {"@id": "schema:addressCountry"}
+      }
+    }
+  }
+}
