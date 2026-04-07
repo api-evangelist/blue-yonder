@@ -1,17 +1,15 @@
 aid: blue-yonder
-url: 
-  https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/apis.yml
 apis:
   - aid: blue-yonder:blue-yonder-demand-planning-api
     name: Blue Yonder Demand Planning API
     tags:
-      - Supply Chain
       - Demand Planning
       - Forecasting
-      - Retail
       - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
+      - Retail
+      - Supply Chain
+    image: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
     humanURL: https://blueyonder.com/
     baseURL: https://api.blueyonder.example.com
     properties:
@@ -26,20 +24,18 @@ apis:
   - aid: blue-yonder:blue-yonder-warehouse-management-api
     name: Blue Yonder Warehouse Management API
     tags:
+      - Logistics
+      - REST
       - Supply Chain
       - Warehouse Management
       - WMS
-      - Logistics
-      - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
     humanURL: https://blueyonder.com/
     baseURL: https://api.blueyonder.example.com
     properties:
       - url: https://blueyonder.com/solutions/blue-yonder-platform
         type: Documentation
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
         type: OpenAPI
     description: >-
       The Blue Yonder Warehouse Management API provides access to warehouse operations
@@ -50,13 +46,12 @@ apis:
   - aid: blue-yonder:blue-yonder-transportation-management-api
     name: Blue Yonder Transportation Management API
     tags:
-      - Supply Chain
-      - Transportation Management
-      - TMS
       - Logistics
       - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
+      - Supply Chain
+      - TMS
+      - Transportation Management
+    image: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
     humanURL: https://blueyonder.com/
     baseURL: https://api.blueyonder.example.com
     properties:
@@ -71,20 +66,17 @@ apis:
   - aid: blue-yonder:blue-yonder-connect-api
     name: Blue Yonder Connect API & Expansion Pack
     tags:
-      - Supply Chain
-      - Integration
       - API Management
+      - EDI
+      - Integration
       - MuleSoft
       - REST
-      - EDI
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
-    humanURL: 
-      https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
+      - Supply Chain
+    image: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/image.png
+    humanURL: https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
     baseURL: https://api.blueyonder.example.com
     properties:
-      - url: 
-          https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
+      - url: https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
         type: Documentation
     description: >-
       Blue Yonder Connect - API & Expansion Pack provides an advanced integration
@@ -100,19 +92,15 @@ common:
     type: Portal
   - url: https://blueyonder.com/solutions/blue-yonder-platform
     type: Documentation
-  - url: 
-      https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
+  - url: https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack
     type: GettingStarted
   - url: https://blog.blueyonder.com/
     type: Blog
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-schema/blue-yonder-inventory-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-schema/blue-yonder-inventory-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-ld/blue-yonder-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-ld/blue-yonder-context.jsonld
     type: JSONLDContext
 
 maintainers:

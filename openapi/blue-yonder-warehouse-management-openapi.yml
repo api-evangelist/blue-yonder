@@ -22,10 +22,10 @@ security:
 tags:
   - name: Inventory
     description: Inventory positions and stock management
-  - name: Receipts
-    description: Inbound receiving and putaway
   - name: Orders
     description: Outbound order management and picking
+  - name: Receipts
+    description: Inbound receiving and putaway
   - name: Tasks
     description: Warehouse task management
 
