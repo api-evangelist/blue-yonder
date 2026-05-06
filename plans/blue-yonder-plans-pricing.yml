@@ -1,152 +1,74 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: blue-yonder
+provider: Blue Yonder
 providerId: blue-yonder
 created: '2026-05-04'
-modified: '2026-05-04'
-tags: []
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Supply Chain
+  - Logistics
+  - Retail
+  - Warehouse Management
+  - Transportation Management
+  - AI / SaaS
+description: Blue Yonder is an enterprise AI / supply-chain SaaS vendor (planning, retail planning,
+  order management, warehouse, transportation, workforce, returns) sold under contact-sales contracts.
+  No public per-seat or per-API rate card exists; pricing is configured per deployment scope and
+  industry.
+sources:
+  - https://www.blueyonder.com
+notes: Public marketing site lists product modules but no pricing. Reconcile with the active Blue
+  Yonder enterprise contract.
 plans:
-  - id: blue-yonder-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the blue-yonder API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.blueyonder.example.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.blueyonder.example.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Blue Yonder Demand Planning API
-      - name: Blue Yonder Warehouse Management API
-      - name: Blue Yonder Transportation Management API
-      - name: Blue Yonder Connect API & Expansion Pack
-  - id: blue-yonder-pro
-    name: Professional
-    type: paid
-    description: Production tier for blue-yonder. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.blueyonder.example.com
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.blueyonder.example.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.blueyonder.example.com
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Blue Yonder Demand Planning API
-      - name: Blue Yonder Warehouse Management API
-      - name: Blue Yonder Transportation Management API
-      - name: Blue Yonder Connect API & Expansion Pack
-  - id: blue-yonder-enterprise
-    name: Enterprise
+  - id: blue-yonder-platform-enterprise
+    name: Blue Yonder Platform (Contact Sales)
     type: enterprise
-    description: Custom-negotiated tier for blue-yonder. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+    description: Custom-negotiated subscription to one or more Blue Yonder solution categories,
+      delivered on the Blue Yonder Platform.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Platform subscription
+        name: platform_subscription
+        type: subscription
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.blueyonder.example.com
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.blueyonder.example.com
+      - label: Module add-on (Planning, OMS, WMS, TMS, Workforce, etc.)
+        name: module_addon
+        type: subscription
+        metric: varies
+        limit: -1
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
+        price: contact sales
+        userMultiplied: false
+      - label: Blue Yonder Network connectivity
+        name: network_connectivity
+        type: subscription
+        metric: varies
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Blue Yonder Demand Planning API
-      - name: Blue Yonder Warehouse Management API
-      - name: Blue Yonder Transportation Management API
-      - name: Blue Yonder Connect API & Expansion Pack
+      - name: Supply Chain Planning
+      - name: Retail Planning & Category Management
+      - name: Order Management & Commerce
+      - name: Returns Management
+      - name: Warehouse Management (WMS)
+      - name: Transportation Management (TMS)
+      - name: Workforce & Labor Management
+      - name: Supply Chain Command Center
+      - name: Blue Yonder Platform / API access
+      - name: Blue Yonder Network
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
