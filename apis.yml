@@ -103,6 +103,10 @@ common:
   - url: https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-ld/blue-yonder-context.jsonld
     type: JSONLDContext
 
+  - type: Integrations
+    url: https://blueyonder.com/partners
+integrations:
+  - name: Blue Yonder
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
