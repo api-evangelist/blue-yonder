@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Blue Yonder Warehouse Management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.blueyonder.example.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inventory positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueyonder.example.com/wms/v1/inventory",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by warehouse location"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item/SKU identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve current inventory levels and positions across warehouse locations."
+        },
+        {
+          "info": {
+            "name": "Get inventory for item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueyonder.example.com/wms/v1/inventory/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get inventory levels and all warehouse locations for a specific item/SKU."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Receipts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List receipts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueyonder.example.com/wms/v1/receipts",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve inbound receipts (purchase orders and ASN receipts)."
+        },
+        {
+          "info": {
+            "name": "Create inbound receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.blueyonder.example.com/wms/v1/receipts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new inbound receipt for an expected delivery (ASN or PO receipt)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List outbound orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueyonder.example.com/wms/v1/orders",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve outbound fulfillment orders."
+        },
+        {
+          "info": {
+            "name": "Create outbound order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.blueyonder.example.com/wms/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new outbound fulfillment order for warehouse picking and shipping."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List warehouse tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueyonder.example.com/wms/v1/tasks",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assignedTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve warehouse tasks (pick, put, move, count) for assignment and tracking."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
