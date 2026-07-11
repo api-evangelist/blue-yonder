@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/blue-yonder-warehouse-management-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/blue-yonder-warehouse-management-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.blueyonder.example.com/oauth/token
+scopes:
+- scope: wms:read
+  description: Read warehouse data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/blue-yonder-warehouse-management-openapi.yml
+- scope: wms:write
+  description: Write warehouse data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/blue-yonder-warehouse-management-openapi.yml
