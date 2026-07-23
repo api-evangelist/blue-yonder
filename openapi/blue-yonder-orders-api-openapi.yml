@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: Blue Yonder Warehouse Management Inventory Orders API
+  description: The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
+  version: 1.0.0
+  contact:
+    name: Blue Yonder Platform
+    url: https://blueyonder.com/solutions/blue-yonder-platform
+servers:
+- url: https://api.blueyonder.example.com
+  description: Blue Yonder WMS API
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Orders
+  description: Outbound order management and picking
+paths:
+  /wms/v1/orders:
+    get:
+      operationId: listOrders
+      summary: List outbound orders
+      description: Retrieve outbound fulfillment orders.
+      tags:
+      - Orders
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - New
+          - Picking
+          - Packed
+          - Shipped
+          - Cancelled
+      - name: priority
+        in: query
+        schema:
+          type: string
+          enum:
+          - Standard
+          - Rush
+          - Critical
+      responses:
+        '200':
+          description: Outbound orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+    post:
+      operationId: createOrder
+      summary: Create outbound order
+      description: Create a new outbound fulfillment order for warehouse picking and shipping.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+    OrderRequest:
+      type: object
+      required:
+      - orderNumber
+      - requestedShipDate
+      - lineItems
+      properties:
+        orderNumber:
+          type: string
+        priority:
+          type: string
+          enum:
+          - Standard
+          - Rush
+          - Critical
+          default: Standard
+        requestedShipDate:
+          type: string
+          format: date
+        shipToAddress:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            type: object
+            required:
+            - itemId
+            - quantity
+            properties:
+              itemId:
+                type: string
+              quantity:
+                type: number
+              unitOfMeasure:
+                type: string
+    OrderLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        orderedQuantity:
+          type: number
+        pickedQuantity:
+          type: number
+        shippedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+    OrderList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        orderNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - New
+          - Picking
+          - Packed
+          - Shipped
+          - Cancelled
+        priority:
+          type: string
+          enum:
+          - Standard
+          - Rush
+          - Critical
+        requestedShipDate:
+          type: string
+          format: date
+        shipToAddress:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.blueyonder.example.com/oauth/token
+          scopes:
+            wms:read: Read warehouse data
+            wms:write: Write warehouse data
+    bearerAuth:
+      type: http
+      scheme: bearer

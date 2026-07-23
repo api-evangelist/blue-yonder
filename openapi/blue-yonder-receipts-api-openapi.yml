@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Blue Yonder Warehouse Management Inventory Receipts API
+  description: The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
+  version: 1.0.0
+  contact:
+    name: Blue Yonder Platform
+    url: https://blueyonder.com/solutions/blue-yonder-platform
+servers:
+- url: https://api.blueyonder.example.com
+  description: Blue Yonder WMS API
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Receipts
+  description: Inbound receiving and putaway
+paths:
+  /wms/v1/receipts:
+    get:
+      operationId: listReceipts
+      summary: List receipts
+      description: Retrieve inbound receipts (purchase orders and ASN receipts).
+      tags:
+      - Receipts
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Expected
+          - Arrived
+          - InProgress
+          - Completed
+          - Cancelled
+      - name: fromDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: toDate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: List of receipts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiptList'
+    post:
+      operationId: createReceipt
+      summary: Create inbound receipt
+      description: Create a new inbound receipt for an expected delivery (ASN or PO receipt).
+      tags:
+      - Receipts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiptRequest'
+      responses:
+        '201':
+          description: Receipt created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+components:
+  schemas:
+    ReceiptLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        expectedQuantity:
+          type: number
+        receivedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+    ReceiptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receipt'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ReceiptRequest:
+      type: object
+      required:
+      - referenceNumber
+      - expectedDate
+      - lineItems
+      properties:
+        referenceNumber:
+          type: string
+        expectedDate:
+          type: string
+          format: date
+        supplierId:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItemRequest'
+    ReceiptLineItemRequest:
+      type: object
+      required:
+      - itemId
+      - expectedQuantity
+      properties:
+        itemId:
+          type: string
+        expectedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+    Receipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+        referenceNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - Expected
+          - Arrived
+          - InProgress
+          - Completed
+          - Cancelled
+        expectedDate:
+          type: string
+          format: date
+        arrivedDate:
+          type: string
+          format: date-time
+        supplierId:
+          type: string
+        supplierName:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItem'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.blueyonder.example.com/oauth/token
+          scopes:
+            wms:read: Read warehouse data
+            wms:write: Write warehouse data
+    bearerAuth:
+      type: http
+      scheme: bearer

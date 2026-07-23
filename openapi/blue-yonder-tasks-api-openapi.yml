@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Blue Yonder Warehouse Management Inventory Tasks API
+  description: The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
+  version: 1.0.0
+  contact:
+    name: Blue Yonder Platform
+    url: https://blueyonder.com/solutions/blue-yonder-platform
+servers:
+- url: https://api.blueyonder.example.com
+  description: Blue Yonder WMS API
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Tasks
+  description: Warehouse task management
+paths:
+  /wms/v1/tasks:
+    get:
+      operationId: listTasks
+      summary: List warehouse tasks
+      description: Retrieve warehouse tasks (pick, put, move, count) for assignment and tracking.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pick
+          - Putaway
+          - Move
+          - CycleCount
+          - ReplenishmentPick
+      - name: assignedTo
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Assigned
+          - InProgress
+          - Completed
+          - Cancelled
+      responses:
+        '200':
+          description: Warehouse tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskList'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+    TaskList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Task:
+      type: object
+      properties:
+        taskId:
+          type: string
+        taskType:
+          type: string
+          enum:
+          - Pick
+          - Putaway
+          - Move
+          - CycleCount
+          - ReplenishmentPick
+        status:
+          type: string
+          enum:
+          - Pending
+          - Assigned
+          - InProgress
+          - Completed
+          - Cancelled
+        priority:
+          type: integer
+        assignedTo:
+          type: string
+        fromLocation:
+          type: string
+        toLocation:
+          type: string
+        itemId:
+          type: string
+        quantity:
+          type: number
+        unitOfMeasure:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.blueyonder.example.com/oauth/token
+          scopes:
+            wms:read: Read warehouse data
+            wms:write: Write warehouse data
+    bearerAuth:
+      type: http
+      scheme: bearer
