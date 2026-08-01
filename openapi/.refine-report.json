@@ -1,0 +1,20 @@
+{
+  "provider": "blue-yonder",
+  "sources": [
+    "blue-yonder-inventory-api-openapi.yml",
+    "blue-yonder-orders-api-openapi.yml",
+    "blue-yonder-receipts-api-openapi.yml",
+    "blue-yonder-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "blue-yonder-inventory-api-openapi.yml",
+    "blue-yonder-orders-api-openapi.yml",
+    "blue-yonder-receipts-api-openapi.yml",
+    "blue-yonder-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
