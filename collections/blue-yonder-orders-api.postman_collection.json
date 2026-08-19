@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "de0acb3d-fe62-4b0d-b872-0b31e97da8d4",
+      "name": "Orders",
+      "description": {
+        "content": "Outbound order management and picking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b72e335-38f1-45bb-b28c-ded35c3a28c6",
+          "name": "List outbound orders",
+          "request": {
+            "name": "List outbound orders",
+            "description": {
+              "content": "Retrieve outbound fulfillment orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d957949-f3b6-47d2-a032-83b4cc8b35ab",
+              "name": "Outbound orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderId\": \"string\",\n      \"orderNumber\": \"string\",\n      \"status\": \"Shipped\",\n      \"priority\": \"Critical\",\n      \"requestedShipDate\": \"2010-04-17\",\n      \"shipToAddress\": {\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"lineItems\": [\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"orderedQuantity\": 3060.7839975568827,\n          \"pickedQuantity\": 3603.809476152291,\n          \"shippedQuantity\": 7314.845529664415,\n          \"unitOfMeasure\": \"string\"\n        },\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"orderedQuantity\": 520.7677518463139,\n          \"pickedQuantity\": 4825.209431677478,\n          \"shippedQuantity\": 6212.798837939874,\n          \"unitOfMeasure\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1955-01-15T20:27:44.714Z\"\n    },\n    {\n      \"orderId\": \"string\",\n      \"orderNumber\": \"string\",\n      \"status\": \"Picking\",\n      \"priority\": \"Critical\",\n      \"requestedShipDate\": \"1962-12-13\",\n      \"shipToAddress\": {\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"lineItems\": [\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"orderedQuantity\": 5541.337079129314,\n          \"pickedQuantity\": 91.28978825819756,\n          \"shippedQuantity\": 5566.153134360608,\n          \"unitOfMeasure\": \"string\"\n        },\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"orderedQuantity\": 8313.449610415397,\n          \"pickedQuantity\": 6235.608890205695,\n          \"shippedQuantity\": 5457.374955662967,\n          \"unitOfMeasure\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1980-05-19T20:09:45.193Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7805,\n    \"pageSize\": 9294,\n    \"totalPages\": 1207,\n    \"totalItems\": 3034\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca11b50d-4dab-4706-a268-00611e86f582",
+          "name": "Create outbound order",
+          "request": {
+            "name": "Create outbound order",
+            "description": {
+              "content": "Create a new outbound fulfillment order for warehouse picking and shipping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"requestedShipDate\": \"<date>\",\n  \"lineItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"priority\": \"Standard\",\n  \"shipToAddress\": {\n    \"name\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0e46be9-68bf-402c-abae-74e6a88258d3",
+              "name": "Order created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"requestedShipDate\": \"<date>\",\n  \"lineItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"priority\": \"Standard\",\n  \"shipToAddress\": {\n    \"name\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"orderNumber\": \"string\",\n  \"status\": \"Shipped\",\n  \"priority\": \"Rush\",\n  \"requestedShipDate\": \"2009-09-21\",\n  \"shipToAddress\": {\n    \"name\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"lineItems\": [\n    {\n      \"lineId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"orderedQuantity\": 1098.6567585799712,\n      \"pickedQuantity\": 1346.0178293811298,\n      \"shippedQuantity\": 245.61972082834725,\n      \"unitOfMeasure\": \"string\"\n    },\n    {\n      \"lineId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"orderedQuantity\": 4363.127454073093,\n      \"pickedQuantity\": 3828.043616699188,\n      \"shippedQuantity\": 9914.700790199535,\n      \"unitOfMeasure\": \"string\"\n    }\n  ],\n  \"createdAt\": \"1992-07-17T16:29:51.166Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.blueyonder.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "wms:read wms:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.blueyonder.example.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "161dbadd-268a-4c40-894f-bfb7a4c5c1b5",
+    "name": "Blue Yonder Warehouse Management Inventory Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.\n\nContact Support:\n Name: Blue Yonder Platform",
+      "type": "text/plain"
+    }
+  }
+}

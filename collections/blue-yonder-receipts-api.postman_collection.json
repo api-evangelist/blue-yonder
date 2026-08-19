@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "93d434cd-7697-4f5f-bd7b-9f82c68f3ad6",
+      "name": "Receipts",
+      "description": {
+        "content": "Inbound receiving and putaway",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdaf8ccf-2504-4237-8ae1-ff304b1de5be",
+          "name": "List receipts",
+          "request": {
+            "name": "List receipts",
+            "description": {
+              "content": "Retrieve inbound receipts (purchase orders and ASN receipts).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37ea99c2-53d6-4799-80bc-48427ae89201",
+              "name": "List of receipts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"receiptId\": \"string\",\n      \"referenceNumber\": \"string\",\n      \"status\": \"Cancelled\",\n      \"expectedDate\": \"1992-08-09\",\n      \"arrivedDate\": \"1992-09-22T06:23:58.490Z\",\n      \"supplierId\": \"string\",\n      \"supplierName\": \"string\",\n      \"lineItems\": [\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"expectedQuantity\": 6445.807667085872,\n          \"receivedQuantity\": 4788.576386201611,\n          \"unitOfMeasure\": \"string\"\n        },\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"expectedQuantity\": 136.47892300713616,\n          \"receivedQuantity\": 6560.091118906073,\n          \"unitOfMeasure\": \"string\"\n        }\n      ]\n    },\n    {\n      \"receiptId\": \"string\",\n      \"referenceNumber\": \"string\",\n      \"status\": \"InProgress\",\n      \"expectedDate\": \"1996-09-13\",\n      \"arrivedDate\": \"1950-02-27T23:59:42.730Z\",\n      \"supplierId\": \"string\",\n      \"supplierName\": \"string\",\n      \"lineItems\": [\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"expectedQuantity\": 556.3641487839932,\n          \"receivedQuantity\": 3776.562048254477,\n          \"unitOfMeasure\": \"string\"\n        },\n        {\n          \"lineId\": \"string\",\n          \"itemId\": \"string\",\n          \"itemDescription\": \"string\",\n          \"expectedQuantity\": 3106.504843442006,\n          \"receivedQuantity\": 7805.9135359463635,\n          \"unitOfMeasure\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"page\": 781,\n    \"pageSize\": 8785,\n    \"totalPages\": 4681,\n    \"totalItems\": 8054\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5814f01-9865-4f47-a0ce-6724af3871f8",
+          "name": "Create inbound receipt",
+          "request": {
+            "name": "Create inbound receipt",
+            "description": {
+              "content": "Create a new inbound receipt for an expected delivery (ASN or PO receipt).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"referenceNumber\": \"<string>\",\n  \"expectedDate\": \"<date>\",\n  \"lineItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"expectedQuantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"expectedQuantity\": \"<number>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"supplierId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c81a280-e6da-436d-a267-081e38c8394e",
+              "name": "Receipt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"referenceNumber\": \"<string>\",\n  \"expectedDate\": \"<date>\",\n  \"lineItems\": [\n    {\n      \"itemId\": \"string\",\n      \"expectedQuantity\": 4787.1774718269635,\n      \"unitOfMeasure\": \"string\"\n    },\n    {\n      \"itemId\": \"string\",\n      \"expectedQuantity\": 9554.602128780376,\n      \"unitOfMeasure\": \"string\"\n    }\n  ],\n  \"supplierId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"receiptId\": \"string\",\n  \"referenceNumber\": \"string\",\n  \"status\": \"InProgress\",\n  \"expectedDate\": \"1995-04-04\",\n  \"arrivedDate\": \"1971-10-05T05:51:29.784Z\",\n  \"supplierId\": \"string\",\n  \"supplierName\": \"string\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"expectedQuantity\": 7696.068096557772,\n      \"receivedQuantity\": 697.1060822078334,\n      \"unitOfMeasure\": \"string\"\n    },\n    {\n      \"lineId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"expectedQuantity\": 925.8498708819429,\n      \"receivedQuantity\": 5208.256439567718,\n      \"unitOfMeasure\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.blueyonder.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "wms:read wms:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.blueyonder.example.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4dd8e395-0725-45bd-b997-7840dfabfde6",
+    "name": "Blue Yonder Warehouse Management Inventory Receipts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.\n\nContact Support:\n Name: Blue Yonder Platform",
+      "type": "text/plain"
+    }
+  }
+}

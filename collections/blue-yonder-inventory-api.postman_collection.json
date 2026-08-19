@@ -1,0 +1,400 @@
+{
+  "item": [
+    {
+      "id": "e2afa774-4f2f-4844-9d8a-091b05010717",
+      "name": "Inventory",
+      "description": {
+        "content": "Inventory positions and stock management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58d6788c-3d1c-49a7-b03b-f16026187d07",
+          "name": "List inventory positions",
+          "request": {
+            "name": "List inventory positions",
+            "description": {
+              "content": "Retrieve current inventory levels and positions across warehouse locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<string>",
+                  "description": "Filter by warehouse location"
+                },
+                {
+                  "disabled": false,
+                  "key": "itemId",
+                  "value": "<string>",
+                  "description": "Filter by item/SKU identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79b9123f-f59d-4990-bb58-bd0901ff901f",
+              "name": "Inventory positions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"positionId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"locationId\": \"string\",\n      \"locationName\": \"string\",\n      \"zone\": \"string\",\n      \"quantityOnHand\": 3547.0902210113063,\n      \"quantityAvailable\": 5535.165624390304,\n      \"quantityReserved\": 4161.956315705351,\n      \"unitOfMeasure\": \"string\",\n      \"lotNumber\": \"string\",\n      \"serialNumber\": \"string\",\n      \"expirationDate\": \"1960-01-27\",\n      \"status\": \"Available\",\n      \"lastUpdated\": \"1992-06-05T10:26:11.135Z\"\n    },\n    {\n      \"positionId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"locationId\": \"string\",\n      \"locationName\": \"string\",\n      \"zone\": \"string\",\n      \"quantityOnHand\": 3913.0574244343384,\n      \"quantityAvailable\": 5367.551231845101,\n      \"quantityReserved\": 2652.48237723157,\n      \"unitOfMeasure\": \"string\",\n      \"lotNumber\": \"string\",\n      \"serialNumber\": \"string\",\n      \"expirationDate\": \"2008-02-18\",\n      \"status\": \"Available\",\n      \"lastUpdated\": \"1993-06-22T23:31:05.478Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 9960,\n    \"pageSize\": 9973,\n    \"totalPages\": 1016,\n    \"totalItems\": 1918\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59657181-ddfd-40da-b4ac-a3f1a8e0a594",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50d3fd31-0280-4ef8-a3ba-33836dad43e1",
+          "name": "Get inventory for item",
+          "request": {
+            "name": "Get inventory for item",
+            "description": {
+              "content": "Get inventory levels and all warehouse locations for a specific item/SKU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wms",
+                "v1",
+                "inventory",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed25b1b2-5fc5-45a5-b3e1-c54e8f906452",
+              "name": "Item inventory details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "inventory",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itemId\": \"string\",\n  \"itemDescription\": \"string\",\n  \"totalQuantityOnHand\": 3828.5749740347273,\n  \"totalQuantityAvailable\": 6681.916231253342,\n  \"unitOfMeasure\": \"string\",\n  \"positions\": [\n    {\n      \"positionId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"locationId\": \"string\",\n      \"locationName\": \"string\",\n      \"zone\": \"string\",\n      \"quantityOnHand\": 3614.217849500623,\n      \"quantityAvailable\": 8443.685095418738,\n      \"quantityReserved\": 2744.499496374929,\n      \"unitOfMeasure\": \"string\",\n      \"lotNumber\": \"string\",\n      \"serialNumber\": \"string\",\n      \"expirationDate\": \"2000-11-24\",\n      \"status\": \"Quarantine\",\n      \"lastUpdated\": \"1950-05-28T14:35:14.575Z\"\n    },\n    {\n      \"positionId\": \"string\",\n      \"itemId\": \"string\",\n      \"itemDescription\": \"string\",\n      \"locationId\": \"string\",\n      \"locationName\": \"string\",\n      \"zone\": \"string\",\n      \"quantityOnHand\": 2081.1318453673043,\n      \"quantityAvailable\": 37.75351743917854,\n      \"quantityReserved\": 6145.652526894487,\n      \"unitOfMeasure\": \"string\",\n      \"lotNumber\": \"string\",\n      \"serialNumber\": \"string\",\n      \"expirationDate\": \"2014-01-01\",\n      \"status\": \"Quarantine\",\n      \"lastUpdated\": \"1970-11-17T16:38:15.825Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ddc797d-bce4-4c77-a5a8-27705fd57885",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wms",
+                    "v1",
+                    "inventory",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.blueyonder.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "wms:read wms:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.blueyonder.example.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b817f69-d85b-4ab3-a6b7-5f82522d6952",
+    "name": "Blue Yonder Warehouse Management Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.\n\nContact Support:\n Name: Blue Yonder Platform",
+      "type": "text/plain"
+    }
+  }
+}
