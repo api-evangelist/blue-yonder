@@ -92,6 +92,8 @@ apis:
   humanURL: https://blueyonder.com/
   baseURL: https://api.blueyonder.example.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -116,6 +118,8 @@ apis:
   humanURL: https://blueyonder.com/
   baseURL: https://api.blueyonder.example.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
