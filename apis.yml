@@ -138,6 +138,9 @@ apis:
   - type: Documentation
     url: https://blueyonder.com/solutions/blue-yonder-platform
 common:
+  - type: CapabilityMap
+    url: capabilities/blue-yonder-capability-edges.yml
+    name: blue-yonder Business Capability Map
   - type: AgenticAccess
     url: agentic-access/blue-yonder-agentic-access.yml
   - type: DomainSecurity

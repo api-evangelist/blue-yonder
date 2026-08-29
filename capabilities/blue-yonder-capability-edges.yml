@@ -1,0 +1,45 @@
+slug: blue-yonder
+provider: blue-yonder
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Receipts
+  spec_file: blue-yonder-receipts-api-openapi.yml
+  capability_id: BC-2460.10
+  capability_id_l1: BC-2460
+  capability_name: Inbound Operations Management
+  confidence: 0.85
+  evidence: POST /wms/v1/receipts createReceipt Create inbound receipt; schemas ReceiptLineItem, ReceiptRequest
+  reason: Inbound receipt creation against a warehouse management API — receipt of goods entering the
+    warehouse, exactly inbound operations management.
+- tag: Inventory
+  spec_file: blue-yonder-inventory-api-openapi.yml
+  capability_id: BC-2460.20
+  capability_id_l1: BC-2460
+  capability_name: Storage and Inventory Operations Management
+  confidence: 0.8
+  evidence: GET /wms/v1/inventory listInventory List inventory positions; schema InventoryPosition; 'warehouse
+    operations data including inventory positions'
+  reason: Warehouse management inventory positions by item/location — in-warehouse storage and inventory
+    operations. Could also read as generic BC-530 inventory, but the WMS framing points to warehousing
+    operations.
+- tag: Orders
+  spec_file: blue-yonder-orders-api-openapi.yml
+  capability_id: BC-2460.30
+  capability_id_l1: BC-2460
+  capability_name: Outbound Operations Management
+  confidence: 0.75
+  evidence: GET /wms/v1/orders listOrders List outbound orders; POST /wms/v1/orders createOrder Create
+    outbound order
+  reason: Creation and listing of outbound orders within a warehouse management system, feeding picking/packing/dispatch
+    — outbound warehouse operations. Some ambiguity with order fulfilment (BC-520.40).
