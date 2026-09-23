@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Blue Yonder Warehouse Management Inventory Receipts API
+  title: Blue Yonder Warehouse Management Receipts API
   description: The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
   version: 1.0.0
   contact:
@@ -72,21 +72,6 @@ paths:
                 $ref: '#/components/schemas/Receipt'
 components:
   schemas:
-    ReceiptLineItem:
-      type: object
-      properties:
-        lineId:
-          type: string
-        itemId:
-          type: string
-        itemDescription:
-          type: string
-        expectedQuantity:
-          type: number
-        receivedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
     Pagination:
       type: object
       properties:
@@ -98,45 +83,6 @@ components:
           type: integer
         totalItems:
           type: integer
-    ReceiptList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receipt'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ReceiptRequest:
-      type: object
-      required:
-      - referenceNumber
-      - expectedDate
-      - lineItems
-      properties:
-        referenceNumber:
-          type: string
-        expectedDate:
-          type: string
-          format: date
-        supplierId:
-          type: string
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiptLineItemRequest'
-    ReceiptLineItemRequest:
-      type: object
-      required:
-      - itemId
-      - expectedQuantity
-      properties:
-        itemId:
-          type: string
-        expectedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
     Receipt:
       type: object
       properties:
@@ -166,6 +112,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiptLineItem'
+    ReceiptLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        expectedQuantity:
+          type: number
+        receivedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
+    ReceiptRequest:
+      type: object
+      required:
+      - referenceNumber
+      - expectedDate
+      - lineItems
+      properties:
+        referenceNumber:
+          type: string
+        expectedDate:
+          type: string
+          format: date
+        supplierId:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItemRequest'
+    ReceiptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receipt'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ReceiptLineItemRequest:
+      type: object
+      required:
+      - itemId
+      - expectedQuantity
+      properties:
+        itemId:
+          type: string
+        expectedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2

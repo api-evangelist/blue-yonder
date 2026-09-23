@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Blue Yonder Warehouse Management Inventory API
   description: The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
@@ -86,26 +86,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
-    InventoryList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryPosition'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     InventoryPosition:
       type: object
       properties:
@@ -146,13 +126,26 @@ components:
         lastUpdated:
           type: string
           format: date-time
-    Error:
+    Pagination:
       type: object
       properties:
-        code:
-          type: string
-        message:
-          type: string
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+    InventoryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryPosition'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ItemInventory:
       type: object
       properties:
@@ -170,15 +163,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryPosition'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   responses:
-    Unauthorized:
-      description: Unauthorized
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
