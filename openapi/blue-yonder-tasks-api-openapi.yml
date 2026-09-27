@@ -57,6 +57,15 @@ paths:
                 $ref: '#/components/schemas/TaskList'
 components:
   schemas:
+    TaskList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Task:
       type: object
       properties:
@@ -109,15 +118,6 @@ components:
           type: integer
         totalItems:
           type: integer
-    TaskList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     oauth2:
       type: oauth2

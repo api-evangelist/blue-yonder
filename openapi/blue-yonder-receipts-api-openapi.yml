@@ -72,17 +72,30 @@ paths:
                 $ref: '#/components/schemas/Receipt'
 components:
   schemas:
-    Pagination:
+    ReceiptList:
       type: object
       properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receipt'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ReceiptLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        expectedQuantity:
+          type: number
+        receivedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
     Receipt:
       type: object
       properties:
@@ -112,18 +125,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiptLineItem'
-    ReceiptLineItem:
+    ReceiptLineItemRequest:
       type: object
+      required:
+      - itemId
+      - expectedQuantity
       properties:
-        lineId:
-          type: string
         itemId:
           type: string
-        itemDescription:
-          type: string
         expectedQuantity:
-          type: number
-        receivedQuantity:
           type: number
         unitOfMeasure:
           type: string
@@ -145,27 +155,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiptLineItemRequest'
-    ReceiptList:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receipt'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ReceiptLineItemRequest:
-      type: object
-      required:
-      - itemId
-      - expectedQuantity
-      properties:
-        itemId:
-          type: string
-        expectedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
   securitySchemes:
     oauth2:
       type: oauth2

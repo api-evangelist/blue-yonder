@@ -81,23 +81,32 @@ components:
           type: integer
         totalItems:
           type: integer
-    OrderLineItem:
+    Address:
       type: object
       properties:
-        lineId:
+        name:
           type: string
-        itemId:
+        street1:
           type: string
-        itemDescription:
+        street2:
           type: string
-        orderedQuantity:
-          type: number
-        pickedQuantity:
-          type: number
-        shippedQuantity:
-          type: number
-        unitOfMeasure:
+        city:
           type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    OrderList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Order:
       type: object
       properties:
@@ -131,22 +140,22 @@ components:
         createdAt:
           type: string
           format: date-time
-    Address:
+    OrderLineItem:
       type: object
       properties:
-        name:
+        lineId:
           type: string
-        street1:
+        itemId:
           type: string
-        street2:
+        itemDescription:
           type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
+        orderedQuantity:
+          type: number
+        pickedQuantity:
+          type: number
+        shippedQuantity:
+          type: number
+        unitOfMeasure:
           type: string
     OrderRequest:
       type: object
@@ -183,15 +192,6 @@ components:
                 type: number
               unitOfMeasure:
                 type: string
-    OrderList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     oauth2:
       type: oauth2
