@@ -57,15 +57,17 @@ paths:
                 $ref: '#/components/schemas/TaskList'
 components:
   schemas:
-    TaskList:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
     Task:
       type: object
       properties:
@@ -107,17 +109,15 @@ components:
         completedAt:
           type: string
           format: date-time
-    Pagination:
+    TaskList:
       type: object
       properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     oauth2:
       type: oauth2

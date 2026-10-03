@@ -72,15 +72,17 @@ paths:
                 $ref: '#/components/schemas/Receipt'
 components:
   schemas:
-    ReceiptList:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receipt'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
     ReceiptLineItem:
       type: object
       properties:
@@ -96,6 +98,15 @@ components:
           type: number
         unitOfMeasure:
           type: string
+    ReceiptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receipt'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Receipt:
       type: object
       properties:
@@ -155,17 +166,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiptLineItemRequest'
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
   securitySchemes:
     oauth2:
       type: oauth2
