@@ -70,17 +70,65 @@ paths:
                 $ref: '#/components/schemas/Order'
 components:
   schemas:
-    Pagination:
+    Order:
       type: object
       properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
+        orderId:
+          type: string
+        orderNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - New
+          - Picking
+          - Packed
+          - Shipped
+          - Cancelled
+        priority:
+          type: string
+          enum:
+          - Standard
+          - Rush
+          - Critical
+        requestedShipDate:
+          type: string
+          format: date
+        shipToAddress:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        createdAt:
+          type: string
+          format: date-time
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    OrderList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     OrderLineItem:
       type: object
       properties:
@@ -98,6 +146,17 @@ components:
           type: number
         unitOfMeasure:
           type: string
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
     OrderRequest:
       type: object
       required:
@@ -133,65 +192,6 @@ components:
                 type: number
               unitOfMeasure:
                 type: string
-    Order:
-      type: object
-      properties:
-        orderId:
-          type: string
-        orderNumber:
-          type: string
-        status:
-          type: string
-          enum:
-          - New
-          - Picking
-          - Packed
-          - Shipped
-          - Cancelled
-        priority:
-          type: string
-          enum:
-          - Standard
-          - Rush
-          - Critical
-        requestedShipDate:
-          type: string
-          format: date
-        shipToAddress:
-          $ref: '#/components/schemas/Address'
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-        createdAt:
-          type: string
-          format: date-time
-    OrderList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

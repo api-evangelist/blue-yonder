@@ -72,17 +72,18 @@ paths:
                 $ref: '#/components/schemas/Receipt'
 components:
   schemas:
-    Pagination:
+    ReceiptLineItemRequest:
       type: object
+      required:
+      - itemId
+      - expectedQuantity
       properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
+        itemId:
+          type: string
+        expectedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
     ReceiptLineItem:
       type: object
       properties:
@@ -98,6 +99,24 @@ components:
           type: number
         unitOfMeasure:
           type: string
+    ReceiptRequest:
+      type: object
+      required:
+      - referenceNumber
+      - expectedDate
+      - lineItems
+      properties:
+        referenceNumber:
+          type: string
+        expectedDate:
+          type: string
+          format: date
+        supplierId:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineItemRequest'
     ReceiptList:
       type: object
       properties:
@@ -107,6 +126,17 @@ components:
             $ref: '#/components/schemas/Receipt'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
     Receipt:
       type: object
       properties:
@@ -136,36 +166,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiptLineItem'
-    ReceiptLineItemRequest:
-      type: object
-      required:
-      - itemId
-      - expectedQuantity
-      properties:
-        itemId:
-          type: string
-        expectedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
-    ReceiptRequest:
-      type: object
-      required:
-      - referenceNumber
-      - expectedDate
-      - lineItems
-      properties:
-        referenceNumber:
-          type: string
-        expectedDate:
-          type: string
-          format: date
-        supplierId:
-          type: string
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiptLineItemRequest'
   securitySchemes:
     oauth2:
       type: oauth2

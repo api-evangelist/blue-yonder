@@ -68,6 +68,15 @@ components:
           type: integer
         totalItems:
           type: integer
+    TaskList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Task:
       type: object
       properties:
@@ -109,15 +118,6 @@ components:
         completedAt:
           type: string
           format: date-time
-    TaskList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     oauth2:
       type: oauth2

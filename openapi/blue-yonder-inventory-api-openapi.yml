@@ -86,17 +86,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
     InventoryList:
       type: object
       properties:
@@ -106,30 +95,6 @@ components:
             $ref: '#/components/schemas/InventoryPosition'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ItemInventory:
-      type: object
-      properties:
-        itemId:
-          type: string
-        itemDescription:
-          type: string
-        totalQuantityOnHand:
-          type: number
-        totalQuantityAvailable:
-          type: number
-        unitOfMeasure:
-          type: string
-        positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryPosition'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     InventoryPosition:
       type: object
       properties:
@@ -170,15 +135,50 @@ components:
         lastUpdated:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ItemInventory:
+      type: object
+      properties:
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        totalQuantityOnHand:
+          type: number
+        totalQuantityAvailable:
+          type: number
+        unitOfMeasure:
+          type: string
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryPosition'
   responses:
-    NotFound:
-      description: Not found
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
