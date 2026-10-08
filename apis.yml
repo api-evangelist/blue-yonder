@@ -131,6 +131,12 @@ apis:
   - type: Documentation
     url: https://blueyonder.com/solutions/blue-yonder-platform
 common:
+- type: Plans
+  url: plans/blue-yonder-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/blue-yonder-rate-limits.yml
+- type: FinOps
+  url: finops/blue-yonder-finops.yml
 - url: https://blueyonder.com/blog
   type: Blog
 - type: CapabilityMap
