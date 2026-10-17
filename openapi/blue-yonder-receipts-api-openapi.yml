@@ -72,33 +72,6 @@ paths:
                 $ref: '#/components/schemas/Receipt'
 components:
   schemas:
-    ReceiptLineItemRequest:
-      type: object
-      required:
-      - itemId
-      - expectedQuantity
-      properties:
-        itemId:
-          type: string
-        expectedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
-    ReceiptLineItem:
-      type: object
-      properties:
-        lineId:
-          type: string
-        itemId:
-          type: string
-        itemDescription:
-          type: string
-        expectedQuantity:
-          type: number
-        receivedQuantity:
-          type: number
-        unitOfMeasure:
-          type: string
     ReceiptRequest:
       type: object
       required:
@@ -126,6 +99,18 @@ components:
             $ref: '#/components/schemas/Receipt'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ReceiptLineItemRequest:
+      type: object
+      required:
+      - itemId
+      - expectedQuantity
+      properties:
+        itemId:
+          type: string
+        expectedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
     Pagination:
       type: object
       properties:
@@ -137,6 +122,21 @@ components:
           type: integer
         totalItems:
           type: integer
+    ReceiptLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        itemId:
+          type: string
+        itemDescription:
+          type: string
+        expectedQuantity:
+          type: number
+        receivedQuantity:
+          type: number
+        unitOfMeasure:
+          type: string
     Receipt:
       type: object
       properties:

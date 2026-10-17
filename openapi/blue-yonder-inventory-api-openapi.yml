@@ -86,15 +86,17 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    InventoryList:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryPosition'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        totalItems:
+          type: integer
     InventoryPosition:
       type: object
       properties:
@@ -135,17 +137,6 @@ components:
         lastUpdated:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        totalPages:
-          type: integer
-        totalItems:
-          type: integer
     Error:
       type: object
       properties:
@@ -170,15 +161,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryPosition'
+    InventoryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryPosition'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   responses:
-    Unauthorized:
-      description: Unauthorized
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
