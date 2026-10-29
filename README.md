@@ -1,4 +1,4 @@
-# blue-yonder (blue-yonder)
+# Blue Yonder
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,114 +66,150 @@
 
 Transforming supply chains through an end-to-end platform for planning, execution, commerce and returns.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/apis.yml)
+**Areas:** Supply Chain · Forecasting · Retail · Logistics · API Management
 
-## Timestamps
+## Blue Yonder on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Blue Yonder is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/blue-yonder/](https://apis.io/providers/blue-yonder/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (7)
 
-### Blue Yonder Demand Planning API
+- [Blue Yonder Demand Planning API](https://apis.io/apis/blue-yonder/blue-yonder-demand-planning-api/) — The Blue Yonder Demand Planning API enables access to demand forecasting models, statistical baselines, and demand signals for retail and manufacturing…
+- [Blue Yonder Transportation Management API](https://apis.io/apis/blue-yonder/blue-yonder-transportation-management-api/) — The Blue Yonder Transportation Management API enables access to transportation planning, carrier management, load optimization, and freight audit…
+- [Blue Yonder Connect API & Expansion Pack](https://apis.io/apis/blue-yonder/blue-yonder-connect-api/) — Blue Yonder Connect - API & Expansion Pack provides an advanced integration suite with pre-built MuleSoft connectors, enhanced API management tools, and…
+- [blue-yonder Inventory API](https://apis.io/apis/blue-yonder/blue-yonder-inventory-api/) — Inventory positions and stock management
+- [blue-yonder Orders API](https://apis.io/apis/blue-yonder/blue-yonder-orders-api/) — Outbound order management and picking
+- [blue-yonder Receipts API](https://apis.io/apis/blue-yonder/blue-yonder-receipts-api/) — Inbound receiving and putaway
+- [blue-yonder Tasks API](https://apis.io/apis/blue-yonder/blue-yonder-tasks-api/) — Warehouse task management
 
-The Blue Yonder Demand Planning API enables access to demand forecasting models, statistical baselines, and demand signals for retail and manufacturing supply chains. REST APIs support integration with ERP and POS systems for demand sensing, shaping, and response workflows.
+### Published properties
 
-- **Human URL:** [https://blueyonder.com/](https://blueyonder.com/)
-- **Base URL:** `https://api.blueyonder.example.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### Agentic access (1)
 
-- Demand Planning
-- Forecasting
-- REST
-- Retail
-- Supply Chain
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Blue Yonder Agentic Access](https://apis.io/agentic-access/blue-yonder/blue-yonder-agentic-access/)
 
-- [Documentation](https://blueyonder.com/solutions/blue-yonder-platform)
-- [Postman Collection](collections/blue-yonder-warehouse-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/blue-yonder-warehouse-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Schema (1)
 
-### Blue Yonder Warehouse Management API
+The data models the API reads and writes.
 
-The Blue Yonder Warehouse Management API provides access to warehouse operations data including inventory positions, task management, labor optimization, and fulfillment workflows. REST APIs support integration with automation systems, robotics, and ERP platforms for distribution center operations.
+- [Blue Yonder Inventory Position](https://apis.io/schemas/blue-yonder/blue-yonder-inventory/)
 
-- **Human URL:** [https://blueyonder.com/](https://blueyonder.com/)
-- **Base URL:** `https://api.blueyonder.example.com`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Logistics
-- REST
-- Supply Chain
-- Warehouse Management
-- WMS
+- [Blue Yonder Context](https://apis.io/jsonld/blue-yonder/blue-yonder-context/)
 
-#### Properties
+#### Collections (5)
 
-- [Documentation](https://blueyonder.com/solutions/blue-yonder-platform)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/blue-yonder-warehouse-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/blue-yonder-warehouse-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Blue Yonder Transportation Management API
+- [Blue Yonder Warehouse Management Inventory API](https://apis.io/collections/blue-yonder/open-blue-yonder-inventory-api/)
+- [Blue Yonder Warehouse Management Inventory Orders API](https://apis.io/collections/blue-yonder/open-blue-yonder-orders-api/)
+- [Blue Yonder Warehouse Management Inventory Receipts API](https://apis.io/collections/blue-yonder/open-blue-yonder-receipts-api/)
+- [Blue Yonder Warehouse Management Inventory Tasks API](https://apis.io/collections/blue-yonder/open-blue-yonder-tasks-api/)
+- [Blue Yonder Warehouse Management API](https://apis.io/collections/blue-yonder/open-blue-yonder-warehouse-management/)
 
-The Blue Yonder Transportation Management API enables access to transportation planning, carrier management, load optimization, and freight audit capabilities. REST APIs support carrier connectivity, shipment tracking, and transportation cost optimization across multimodal freight networks.
+#### Governance rules (1)
 
-- **Human URL:** [https://blueyonder.com/](https://blueyonder.com/)
-- **Base URL:** `https://api.blueyonder.example.com`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Blue Yonder — jsonschema rules](https://apis.io/rules/blue-yonder/blue-yonder-jsonschema-spectral-rules/)
 
-- Logistics
-- REST
-- Supply Chain
-- TMS
-- Transportation Management
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://blueyonder.com/solutions/blue-yonder-platform)
-- [Postman Collection](collections/blue-yonder-warehouse-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/blue-yonder-warehouse-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Blue Yonder Authentication](https://apis.io/security/blue-yonder/blue-yonder-authentication/)
+- [Blue Yonder Domain Security](https://apis.io/security/blue-yonder/blue-yonder-domain-security/)
 
-### Blue Yonder Connect API & Expansion Pack
+#### OAuth scopes (1)
 
-Blue Yonder Connect - API & Expansion Pack provides an advanced integration suite with pre-built MuleSoft connectors, enhanced API management tools, and higher throughput capacity. Supports REST, SOAP, EDI, and OData protocols for connecting Blue Yonder supply chain platform with SAP, Oracle, Salesforce, and custom applications.
+The permissions the API asks for.
 
-- **Human URL:** [https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack](https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack)
-- **Base URL:** `https://api.blueyonder.example.com`
+- [Blue Yonder Scopes](https://apis.io/scopes/blue-yonder/blue-yonder-scopes/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- API Management
-- EDI
-- Integration
-- MuleSoft
-- REST
-- Supply Chain
+Published plans, tiers and prices.
 
-#### Properties
+- [Blue Yonder Plans Pricing](https://apis.io/plans/blue-yonder/blue-yonder-plans-pricing/)
 
-- [Documentation](https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack)
-- [Postman Collection](collections/blue-yonder-warehouse-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/blue-yonder-warehouse-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
 
-- [GitHub Organization](https://github.com/blue-yonder)
-- [LinkedIn](https://www.linkedin.com/company/blueyonder)
+- [Blue Yonder Rate Limits](https://apis.io/rate-limits/blue-yonder/blue-yonder-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Blue Yonder Finops](https://apis.io/finops/blue-yonder/blue-yonder-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://blueyonder.com)
-- [Portal](https://blueyonder.com/solutions/blue-yonder-platform)
 - [Documentation](https://blueyonder.com/solutions/blue-yonder-platform)
-- [Getting Started](https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack)
-- [Blog](https://blog.blueyonder.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/openapi/blue-yonder-warehouse-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-schema/blue-yonder-inventory-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/blue-yonder/refs/heads/main/json-ld/blue-yonder-context.jsonld)
-- [Integrations](https://blueyonder.com/partners)
+- [Getting started](https://info.blueyonder.com/blue-yonder-platform/what-is-blue-yonder-connect-api-expansion-pack)
+- [Blog](https://blueyonder.com/blog)
+- [GitHub](https://github.com/blue-yonder)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
+**Kin Score 31.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 51.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 5.3 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/blue-yonder/](https://apis.io/providers/blue-yonder/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Blue Yonder: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/blue-yonder/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
